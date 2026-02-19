@@ -9,6 +9,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sendme_outlet/flutter_project_imports.dart';
 
 class PhoneVerificationView extends StatefulWidget {
@@ -134,6 +135,10 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
     setState(() => _progress = true);
 
     try {
+      final token = await FirebaseMessaging.instance.getToken();
+      if (token != null) {
+        GlobalConstants.FIREBASE_TOKEN = token;
+      }
       final url = Uri.encodeFull(
         ApiPath.verifyOTP +
             'mobileNumber=$_phoneNoWithoutCountryCode'
@@ -158,6 +163,7 @@ class _PhoneVerificationViewState extends State<PhoneVerificationView> {
           PreferencesHelper.prefUserData,
           response.body,
         );
+        refreshFcmTokenAfterLogin();
 
         if (!mounted) return;
         await Navigator.pushReplacement(

@@ -12,56 +12,38 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
     _clearCache();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _checkLocationPermission());
+    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkLocationPermission();
+      requestNotificationPermissionIfNeeded();
+    });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _checkLocationPermission();
+      requestNotificationPermissionIfNeeded();
+    }
   }
 
   Future<void> _checkLocationPermission() async {
     final status = await Permission.locationWhenInUse.status;
     if (!mounted) return;
-    if (status.isDenied || status.isPermanentlyDenied || status.isRestricted) {
-      _showLocationDialog();
+    if (!status.isGranted && !status.isPermanentlyDenied) {
+      await Permission.locationWhenInUse.request();
     }
-  }
-
-  void _showLocationDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: const Text('Location permission'),
-        content: const Text(
-          'Please enable location permission to use this app.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Later'),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.of(context).pop();
-              final status = await Permission.locationWhenInUse.request();
-              if (status.isPermanentlyDenied && mounted) {
-                openAppSettings();
-              }
-            },
-            child: const Text('Enable'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              openAppSettings();
-            },
-            child: const Text('Open settings'),
-          ),
-        ],
-      ),
-    );
   }
 
   Future<void> _clearCache() async {

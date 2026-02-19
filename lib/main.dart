@@ -9,6 +9,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:sendme_outlet/AppConfig.dart';
 import 'package:sendme_outlet/flutter_project_imports.dart';
+import 'package:sendme_outlet/src/services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +18,7 @@ void main() async {
     await resolveActiveApp();
     await _initGlobals();
     await initializeDateFormatting('en');
-    // Firebase is initialized lazily in PhoneVerificationView when user logs in.
+    await initializeNotificationService();
     runApp(const MyApp());
   }, (error, stack) {
     debugPrint('Unhandled error: $error\n$stack');

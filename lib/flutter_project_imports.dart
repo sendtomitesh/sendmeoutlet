@@ -17,6 +17,7 @@ export 'package:sendme_outlet/src/models/search_sub_menu.dart';
 export 'package:sendme_outlet/src/models/outlet_order_or_user_order_detail.dart';
 export 'package:sendme_outlet/src/models/user.dart';
 export 'package:sendme_outlet/src/resources/preferences_helper.dart';
+export 'package:sendme_outlet/src/services/notification_service.dart';
 export 'package:sendme_outlet/src/authorization/location_view.dart';
 export 'package:sendme_outlet/src/authorization/login_page.dart';
 export 'package:sendme_outlet/src/authorization/phone_verification_view.dart';

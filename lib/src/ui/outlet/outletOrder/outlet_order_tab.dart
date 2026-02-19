@@ -33,6 +33,11 @@ class _OutletOrderTabState extends State<OutletOrderTab>
       vsync: this,
       initialIndex: widget.index ?? 0,
     );
+    GlobalConstants.streamController.stream.listen((data) {
+      if (data == 'outletNotify' && mounted) {
+        setState(() {});
+      }
+    });
   }
 
   @override

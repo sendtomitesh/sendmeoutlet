@@ -1,0 +1,25 @@
+{
+  "project_info": {
+    "project_number": "1047994234748",
+    "firebase_url": "https://sendme-bb0b1.firebaseio.com",
+    "project_id": "sendme-bb0b1",
+    "storage_bucket": "sendme-bb0b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047994234748:android:6a798878a6e8d837",
+        "android_client_info": {
+          "package_name": "today.sendme.outlet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRwgkwqdIwFHJX2UmIUQ_L46t4yb21Duo"
+        }
+      ]
+    }
+  ],
+  "configuration_version": "1"
+}

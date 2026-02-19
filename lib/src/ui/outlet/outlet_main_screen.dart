@@ -38,6 +38,7 @@ class _OutletMainScreenState extends State<OutletMainScreen> {
     super.initState();
     _currentIndex = widget.tabIndex ?? 0;
     outletData = _fetchOutletData();
+    requestNotificationPermissionIfNeeded();
   }
 
   Future<String?> _fetchOutletData() async {
@@ -139,6 +140,9 @@ class _OutletMainScreenState extends State<OutletMainScreen> {
 
         await PreferencesHelper.saveStringPref(
             PreferencesHelper.prefOutletData, response.body);
+        await PreferencesHelper.saveStringPref('userType', '${GlobalConstants.Outlet}');
+
+        refreshFcmTokenAfterLogin();
 
         final forceUpdateVal = GlobalConstants.Device_Type == 1
             ? data['Android']

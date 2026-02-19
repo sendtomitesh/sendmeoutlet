@@ -39,6 +39,7 @@ dependencies:
   # Auth & API
   firebase_core: ^2.25.2
   firebase_auth: ^4.17.2
+  firebase_messaging: ^14.9.4
   http: ^0.13.4
   shared_preferences: ^2.2.2
 
@@ -81,6 +82,9 @@ dependencies:
   # Switch toggle
   flutter_switch: ^0.3.2
 
+  # Push notifications
+  flutter_local_notifications: ^18.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -97,7 +101,10 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icons/SendMe.png"
+  image_path: "assets/icons/playstore-icon.png"
+  web:
+    generate: true
+    image_path: "assets/icons/ic_launcher-web.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

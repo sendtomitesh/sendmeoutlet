@@ -3,8 +3,11 @@ import 'package:intl/intl.dart';
 
 import 'package:sendme_outlet/src/common/app_functions.dart';
 
+import 'dart:async';
+
 class GlobalConstants {
   static String? FIREBASE_TOKEN = '';
+  static StreamController<String> streamController = StreamController<String>.broadcast();
 
   static String App_Version = '';
   static String Device_Id = '';

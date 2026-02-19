@@ -4,6 +4,8 @@ export 'dart:core';
 export 'dart:io';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
+export 'package:firebase_messaging/firebase_messaging.dart';
+export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:flutter/foundation.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter/services.dart';

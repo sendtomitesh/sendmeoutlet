@@ -7,6 +7,7 @@ class ApiPath {
   static final String saveOTP = slsServerPath + 'SaveOTP?';
   static final String sendOTP = slsServerPath + 'SendOTP?';
   static final String verifyOTP = slsServerPath + 'verifyOTP?';
+  static final String updateUserToken = slsServerPath + 'UpdateUserToken?';
 
   /// Outlet - switch to outlet and get outlet data
   static final String switchUser = slsServerPath + 'SwitchUser?';
